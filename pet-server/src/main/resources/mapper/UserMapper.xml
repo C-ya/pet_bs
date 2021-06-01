@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smilcool.server.core.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.smilcool.server.core.pojo.po.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
+        <result column="sign" jdbcType="VARCHAR" property="sign"/>
+        <result column="intro" jdbcType="VARCHAR" property="intro"/>
+        <result column="grade" jdbcType="VARCHAR" property="grade"/>
+        <result column="college" jdbcType="VARCHAR" property="college"/>
+        <result column="major" jdbcType="VARCHAR" property="major"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="state" jdbcType="INTEGER" property="state"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="deleted" jdbcType="BIT" property="deleted"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, username, password, nickname, avatar, sex, birthday, sign, intro, grade, college,
+    major, phone, email, state, remark, create_time, update_time, deleted
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE
+        FROM user
+        WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.smilcool.server.core.pojo.po.User">
+        INSERT INTO user (id, username, password,
+                          nickname, avatar, sex,
+                          birthday, sign, intro,
+                          grade, college, major,
+                          phone, email, state,
+                          remark, create_time, update_time,
+                          deleted)
+        VALUES (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{nickname,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
+                #{birthday,jdbcType=TIMESTAMP}, #{sign,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR},
+                #{grade,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR},
+                #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER},
+                #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+                #{deleted,jdbcType=BIT})
+    </insert>
+    <insert id="insertSelective" parameterType="com.smilcool.server.core.pojo.po.User"
+            useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="sign != null">
+                sign,
+            </if>
+            <if test="intro != null">
+                intro,
+            </if>
+            <if test="grade != null">
+                grade,
+            </if>
+            <if test="college != null">
+                college,
+            </if>
+            <if test="major != null">
+                major,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sign != null">
+                #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="intro != null">
+                #{intro,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null">
+                #{grade,jdbcType=VARCHAR},
+            </if>
+            <if test="college != null">
+                #{college,jdbcType=VARCHAR},
+            </if>
+            <if test="major != null">
+                #{major,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.smilcool.server.core.pojo.po.User">
+        update user
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sign != null">
+                sign = #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="intro != null">
+                intro = #{intro,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null">
+                grade = #{grade,jdbcType=VARCHAR},
+            </if>
+            <if test="college != null">
+                college = #{college,jdbcType=VARCHAR},
+            </if>
+            <if test="major != null">
+                major = #{major,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.smilcool.server.core.pojo.po.User">
+        UPDATE user
+        SET username    = #{username,jdbcType=VARCHAR},
+            password    = #{password,jdbcType=VARCHAR},
+            nickname    = #{nickname,jdbcType=VARCHAR},
+            avatar      = #{avatar,jdbcType=VARCHAR},
+            sex         = #{sex,jdbcType=VARCHAR},
+            birthday    = #{birthday,jdbcType=TIMESTAMP},
+            sign        = #{sign,jdbcType=VARCHAR},
+            intro       = #{intro,jdbcType=VARCHAR},
+            grade       = #{grade,jdbcType=VARCHAR},
+            college     = #{college,jdbcType=VARCHAR},
+            major       = #{major,jdbcType=VARCHAR},
+            phone       = #{phone,jdbcType=VARCHAR},
+            email       = #{email,jdbcType=VARCHAR},
+            state       = #{state,jdbcType=INTEGER},
+            remark      = #{remark,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            deleted     = #{deleted,jdbcType=BIT}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 以下是自定义内容 -->
+
+    <update id="updateByPrimaryKeyAndForm">
+        UPDATE user
+        <set>
+            <if test="form.nickname != null">
+                nickname = #{form.nickname},
+            </if>
+            <if test="form.avatar != null">
+                avatar = #{form.avatar},
+            </if>
+            <if test="form.sex != null">
+                sex = #{form.sex},
+            </if>
+            <if test="form.birthday != null">
+                birthday = #{form.birthday},
+            </if>
+            <if test="form.sign != null">
+                sign = #{form.sign},
+            </if>
+            <if test="form.intro != null">
+                intro = #{form.intro},
+            </if>
+            <if test="form.grade != null">
+                grade = #{form.grade},
+            </if>
+            <if test="form.college != null">
+                college = #{form.college},
+            </if>
+            <if test="form.major != null">
+                major = #{form.major},
+            </if>
+            <if test="form.phone != null">
+                phone = #{form.phone},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="selectByUsernameAndPassword" resultType="com.smilcool.server.core.pojo.po.User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        WHERE username = #{username}
+        AND password = #{password}
+    </select>
+
+    <select id="selectByUsername" resultType="com.smilcool.server.core.pojo.po.User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        WHERE username = #{username}
+    </select>
+
+    <select id="selectByEmail" resultType="com.smilcool.server.core.pojo.po.User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        WHERE email = #{email}
+    </select>
+
+    <resultMap id="ResultMapWithRole" extends="BaseResultMap" type="com.smilcool.server.core.pojo.vo.UserVO">
+        <collection property="roleList" ofType="com.smilcool.server.core.pojo.vo.RoleVO">
+            <id property="id" column="role_id"/>
+            <result property="name" column="role_name"/>
+            <result property="description" column="role_description"/>
+        </collection>
+    </resultMap>
+
+    <sql id="User_Column_List">
+        u.id, u.username, u.nickname, u.avatar, u.sex, u.birthday,
+        u.sign, u.intro, u.grade, u.college,u.major, u.phone, u.email,
+        u.state, u.remark, u.create_time, u.update_time
+    </sql>
+    <sql id="Role_Column_List">
+        r.id as role_id, r.name as role_name, r.description as role_description
+    </sql>
+
+    <select id="selectUserVOByQueryForm" resultMap="ResultMapWithRole">
+        SELECT
+        <include refid="User_Column_List"/>,
+        <include refid="Role_Column_List"/>
+        FROM user u
+        LEFT JOIN user_role ur ON u.id = ur.user_id
+        LEFT JOIN role r ON ur.role_id = r.id
+        <where>
+            <if test="form.username != null">
+                u.username = #{form.username}
+            </if>
+            <if test="form.nickname != null">
+                AND u.nickname = #{form.nickname}
+            </if>
+            <if test="form.sex != null">
+                AND u.sex = #{form.sex}
+            </if>
+            <if test="form.birthday != null">
+                AND u.birthday = #{form.birthday}
+            </if>
+            <if test="form.grade != null">
+                AND u.grade = #{form.grade}
+            </if>
+            <if test="form.college != null">
+                AND u.college = #{form.college}
+            </if>
+            <if test="form.major != null">
+                AND u.major = #{form.major}
+            </if>
+            <if test="form.phone != null">
+                AND u.phone = #{form.phone}
+            </if>
+            <if test="form.email != null">
+                AND u.email = #{form.email}
+            </if>
+            <if test="form.state != null">
+                AND u.state = #{form.state}
+            </if>
+        </where>
+    </select>
+</mapper>

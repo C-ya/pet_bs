@@ -1,0 +1,77 @@
+# 服务器环境配置
+server:
+  port: 8100
+
+spring:
+  # 数据源配置
+  datasource:
+    url: jdbc:mysql://gz-cdb-1izdproh.sql.tencentcdb.com:59875/pet?autoReconnect=true&useServerPreparedStmts=false&rewriteBatchedStatements=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: Asdf1234!@#$
+    # 使用阿里 Druid 连接池
+    druid:
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计
+      filters: stat,wall
+      stat-view-servlet:
+        enabled: true
+        login-username: root
+        login-password: root
+      web-stat-filter:
+        exclusions: /druid/*,/local-storage/*
+
+
+  # 文件上传下载配置
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+  # Redis 配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: root
+  # Cache 配置
+  cache:
+    type: redis
+  # Jackson 配置
+  jackson:
+    # null 值不进行序列化
+    default-property-inclusion: non_null
+  # Swagger 配置
+  swagger:
+    enabled: true # 生产环境应关闭
+    title: Smilcool API DOCS
+    description: Smilcool API DOCS - Smilcool 接口文档
+    version: 1.0
+    contact:
+      name: Angus Liu
+    base-package: com.smilcool.server.core.controller
+  # 邮箱配置
+  mail:
+    # 邮件服务器
+    host: smtp.126.com
+    username: smilcool@126.com
+    password: smilcool126mail
+
+# MyBatis-Plus 配置（替代原 MyBatis 配置）
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 下划线风格映射到驼峰命名（便于数据库字段映射到 java 对象属性）
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.smilcool.server.core.pojo.*
+
+# Log 配置
+logging:
+  level:
+    # MyBatis 日志级别为 debug
+    com.smilcool.server.base.config: debug
+    com.smilcool.server.core.dao: debug
+    com.smilcool.server.core.controller: debug
+
+# Smilcool 自定义配置
+smilcool:
+  # netty 监听端口
+  netty-port: 8088
+  # 本地存储位置
+  local-storage: D:/Smilcool/
