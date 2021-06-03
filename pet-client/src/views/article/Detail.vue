@@ -45,7 +45,7 @@
                       <sui-comment-metadata>
                         <Time :time="comment.createTime"/>
                       </sui-comment-metadata>
-					  		  <span style="color:#0000EE;float: right;"   
+					  		  <span class="del"    
 								v-if="$store.state.user
 								&& (comment.postUser.id === $store.state.user.id || $store.state.user.id===1 ||$store.state.user.id===4 || $store.state.user.id===9)"
 								@click="delCom(comment.id)"> 删除</span>
@@ -113,20 +113,20 @@
         </div>
         <!-- 操作按钮 END -->
         <!-- 文章信息 -->
-        <sui-card class="fluid">
+        <!-- <sui-card class="fluid">
           <sui-message attached="top" :content="article.articleCategory"/>
           <sui-card-content>
             <Tag type="dot" color="#ff8364" v-for="(tag, index) in article.tags" :key="index">{{tag}}</Tag>
           </sui-card-content>
-        </sui-card>
+        </sui-card> -->
         <!-- 文章信息 END -->
         <!-- 相关文章 -->
-        <sui-card class="fluid">
+        <!-- <sui-card class="fluid">
           <sui-message attached="top" content="他的文章"/>
           <sui-card-content>
             暂无更多文章
           </sui-card-content>
-        </sui-card>
+        </sui-card> -->
         <!-- 相关文章 END -->
       </iCol>
     </Row>
@@ -364,6 +364,11 @@ export default {
 
     .comment-input-form {
       overflow: hidden;
+    }
+    .del {
+       color:#ff8364;
+       float: right;
+       margin-right: 10px;
     }
   }
 }
