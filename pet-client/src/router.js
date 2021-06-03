@@ -47,7 +47,7 @@ const router = new Router({
                 path: 'moment',
                 name: 'moment',
                 meta: {
-                    title: '校园动态'
+                    title: '社区动态'
                 },
                 component: () =>
                     import ('@/views/moment/Moment')
@@ -72,7 +72,7 @@ const router = new Router({
                 path: 'second-hand',
                 name: 'second-hand',
                 meta: {
-                    title: '宠物'
+                    title: '寄养广场'
                 },
                 component: () =>
                     import ('@/views/second-hand/SecondHand')
@@ -81,7 +81,7 @@ const router = new Router({
                 name: 'second-hand-detail',
                 props: true,
                 meta: {
-                    title: '宠物详情'
+                    title: '寄养详情'
                 },
                 component: () =>
                     import ('@/views/second-hand/Detail')
@@ -106,7 +106,7 @@ const router = new Router({
                 path: 'forum',
                 name: 'forum',
                 meta: {
-                    title: '校内论坛'
+                    title: '社区论坛'
                 },
                 component: () =>
                     import ('@/views/forum/Forum')
@@ -147,7 +147,7 @@ const router = new Router({
             }
         ]
     }],
-    // 页面切换时滚动到顶端（好像没作用）
+    // 页面切换时滚动到顶端
     scrollBehavior(to, from, savedPosition) {
         if (to.hash) {
             return { selector: to.hash }

@@ -20,8 +20,8 @@
         <!-- 操作按钮 -->
         <div class="actions-buttons" v-if="$store.state.user && user.id !== $store.state.user.id">
           <sui-button-group>
-            <sui-button basic color="red" icon="heart" content="关注" @click="addFriend"/>
-            <sui-button basic color="blue" icon="envelope" content="私信"/>
+            <!-- <sui-button basic color="red" icon="heart" content="关注" @click="addFriend"/> -->
+            <!-- <sui-button basic color="blue" icon="envelope" content="私信"/> -->
           </sui-button-group>
         </div>
         <!-- 操作按钮 END -->
@@ -81,15 +81,7 @@
           <DatePicker :value="userUpdateModal.form.birthday" @on-change="time => userUpdateModal.form.birthday = time"
                       type="date" size="large" style="width: 100%"/>
         </FormItem>
-        <FormItem label="学院" required>
-          <Input v-model="userUpdateModal.form.college" size="large"/>
-        </FormItem>
-        <FormItem label="年级" required>
-          <Input v-model="userUpdateModal.form.grade" size="large"/>
-        </FormItem>
-        <FormItem label="专业" required>
-          <Input v-model="userUpdateModal.form.major" size="large"/>
-        </FormItem>
+        
         <FormItem label="手机" required>
           <Input v-model="userUpdateModal.form.phone" size="large"/>
         </FormItem>
@@ -127,9 +119,6 @@ export default {
         'birthday': '1970-01-01',
         'sign': '一句话介绍自己',
         'intro': '这个人很神秘，什么也没写',
-        'grade': '未填写',
-        'college': '未填写',
-        'major': '未填写',
         'phone': '未填写',
         'email': 'admin@admin.com',
         'createTime': '2019-03-28'
@@ -142,9 +131,6 @@ export default {
           'avatar': require('../../assets/img/avatar/anonymous-avatar.jpg'),
           'sex': '保密',
           'birthday': '1970-01-01',
-          'college': '未填写',
-          'grade': '未填写',
-          'major': '未填写',
           'phone': '未填写',
           'sign': '一句话介绍自己',
           'intro': '这个人很神秘，什么也没写',

@@ -47,20 +47,22 @@
                   我的主页
                 </DropdownItem>
               </router-link>
-                           <router-link to="/article/editor">
-                             <DropdownItem>
-                               <sui-icon name="pencil alternate"/>
-                               发表文章
-                             </DropdownItem>
-                           </router-link>
-              <!--              <DropdownItem>-->
-              <!--                <sui-icon name="star"/>-->
-              <!--                收藏列表-->
-              <!--              </DropdownItem>-->
-              <!--              <DropdownItem>-->
-              <!--                <sui-icon name="key"/>-->
-              <!--                账号管理-->
-              <!--              </DropdownItem>-->
+              <router-link to="/article/editor">
+                <DropdownItem>
+                  <sui-icon name="pencil alternate" />
+                  发表文章
+                </DropdownItem>
+              </router-link>
+              <!-- <DropdownItem>
+                <sui-icon name="star" />
+                收藏列表
+              </DropdownItem> -->
+              <!-- <router-link to="/message">
+                <DropdownItem>
+                  <sui-icon name="key" />
+                  关注中心
+                </DropdownItem>
+              </router-link> -->
               <DropdownItem divided @click.native="logout">
                 <sui-icon name="power off" />
                 退出登录
@@ -203,58 +205,58 @@ export default {
     showErrorNotice(title, desc) {
       this.$Notice.error({ title, desc });
     },
-// 登录
-login() {
-  if (this.loginForm.username.length === 0) {
-    this.showErrorNotice("登录失败", "请填写用户名或邮箱");
-  } else if (this.loginForm.password.length === 0) {
-    this.showErrorNotice("登录失败", "请填写密码");
-  } else {
-    // TODO 后期需要搬到 vuex
-    this.$axios.post("/api/user/login", this.loginForm).then((res) => {
-      let result = res.data;
-      if (result.success) {
-        this.logInOnModel.show = false;
-        // 保存到 vuex
-        this.$store.commit("userUpdate", result.data);
-        this.loginForm = {
-          username: "",
-          password: "",
-        };
+    // 登录
+    login() {
+      if (this.loginForm.username.length === 0) {
+        this.showErrorNotice("登录失败", "请填写用户名或邮箱");
+      } else if (this.loginForm.password.length === 0) {
+        this.showErrorNotice("登录失败", "请填写密码");
+      } else {
+        // TODO 后期需要搬到 vuex
+        this.$axios.post("/api/user/login", this.loginForm).then((res) => {
+          let result = res.data;
+          if (result.success) {
+            this.logInOnModel.show = false;
+            // 保存到 vuex
+            this.$store.commit("userUpdate", result.data);
+            this.loginForm = {
+              username: "",
+              password: "",
+            };
+          }
+        });
       }
-    });
-  }
-},
-// 注销
-logout() {
-  this.$axios.post("/api/user/logout").then((res) => {
-    this.$store.commit("userUpdate", null);
-  });
-},
-// 注册
-logon() {
-  if (this.logonForm.username.length === 0) {
-    this.showErrorNotice("注册失败", "请填写用户名");
-  } else if (
-    this.logonForm.email.length === 0 ||
-    !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(
-      this.logonForm.email
-    )
-  ) {
-    this.showErrorNotice("注册失败", "请填写合法的邮箱");
-  } else if (
-    this.logonForm.password.length === 0 ||
-    this.logonForm.password !== this.logonForm.rePassword
-  ) {
-    this.showErrorNotice("注册失败", "两次输入的密码不一致");
-  } else {
-    // TODO 2019/6/6 后期需要搬到 vuex
-    this.$axios.post("/api/user/logon", this.logonForm).then((res) => {
-      this.$Notice.success({ title: "Bingo", desc: "注册成功" });
-      this.showLoginForm();
-    });
-  }
-},
+    },
+    // 注销
+    logout() {
+      this.$axios.post("/api/user/logout").then((res) => {
+        this.$store.commit("userUpdate", null);
+      });
+    },
+    // 注册
+    logon() {
+      if (this.logonForm.username.length === 0) {
+        this.showErrorNotice("注册失败", "请填写用户名");
+      } else if (
+        this.logonForm.email.length === 0 ||
+        !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(
+          this.logonForm.email
+        )
+      ) {
+        this.showErrorNotice("注册失败", "请填写合法的邮箱");
+      } else if (
+        this.logonForm.password.length === 0 ||
+        this.logonForm.password !== this.logonForm.rePassword
+      ) {
+        this.showErrorNotice("注册失败", "两次输入的密码不一致");
+      } else {
+        // TODO 2019/6/6 后期需要搬到 vuex
+        this.$axios.post("/api/user/logon", this.logonForm).then((res) => {
+          this.$Notice.success({ title: "Bingo", desc: "注册成功" });
+          this.showLoginForm();
+        });
+      }
+    },
     // 第三方登录
     oauth() {
       this.$Notice.warning({ title: "Hey", desc: "功能正在开发中 🚀" });
