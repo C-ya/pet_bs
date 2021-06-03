@@ -19,7 +19,7 @@ public class SecondHandVO {
 
     private String name;
 
-    private Double price;
+    private Integer price;
 
     private String address;
 
@@ -41,6 +41,7 @@ public class SecondHandVO {
      * 关联资源信息
      */
     private ResourceVO resource;
-    
+    private String startdate;
+    private String enddate;
     
 }

@@ -90,6 +90,12 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.selectArticleLatestCommentVO();
     }
 
+	@Override
+	public void del(Integer id) {
+		articleMapper.deleteByPrimaryKey(id);
+		
+	}
+
 //    @Override
 //    public List<TagVO> listHotTag() {
 //        List<TagVO> hotTagList = new ArrayList<>();

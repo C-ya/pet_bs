@@ -6,7 +6,7 @@
         <article>
 
           <sui-message>
-            宠物详情
+            物品详情
           </sui-message>
 
           <sui-card class="fluid file-card">
@@ -106,7 +106,7 @@
         <sui-card class="fluid">
           <sui-message attached="top" content="他的闲置"/>
           <sui-card-content>
-            暂无更多信息
+            暂无更多二手物品
           </sui-card-content>
         </sui-card>
         <!-- 相关文件 END -->

@@ -28,6 +28,8 @@ public interface ArticleService {
 
     List<ArticleLatestCommentVO> listArticleLatestCommentVO();
 
+	void del(Integer id);
+
 //    List<TagVO> listHotTag();
 
 //    org.springframework.data.domain.Page<ArticleDocument> search(String q, Integer page, Integer size);

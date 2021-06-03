@@ -64,4 +64,9 @@ public class CommentServiceImpl implements CommentService {
         });
         return parentCommentList;
     }
+
+	@Override
+	public void del(Integer id) {
+		commentMapper.deleteByPrimaryKey(id);
+	}
 }

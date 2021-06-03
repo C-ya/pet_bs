@@ -44,7 +44,7 @@
                                 lost_found_category, title, description,
                                 item_name, time, address,
                                 remark, create_time, update_time,
-                                deleted, images)
+                                deleted, images )
         VALUES (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER},
                 #{lostFoundCategory,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
                 #{itemName,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR},
@@ -97,6 +97,7 @@
             <if test="images != null">
                 images,
             </if>
+            
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">

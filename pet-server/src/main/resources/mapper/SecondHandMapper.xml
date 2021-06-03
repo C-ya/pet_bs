@@ -8,10 +8,12 @@
         <result column="second_hand_category" jdbcType="VARCHAR" property="secondHandCategory"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="price" jdbcType="DOUBLE" property="price"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
         <result column="address" jdbcType="VARCHAR" property="address"/>
         <result column="description" jdbcType="VARCHAR" property="description"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
+         <result column="startdate" jdbcType="VARCHAR" property="startdate"/>
+           <result column="enddate" jdbcType="VARCHAR" property="enddate"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="deleted" jdbcType="BIT" property="deleted"/>
@@ -48,7 +50,7 @@
                                  deleted, images)
         VALUES (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER},
                 #{secondHandCategory,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
-                #{price,jdbcType=DOUBLE}, #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+                #{price,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
                 #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
                 #{deleted,jdbcType=BIT}, #{images,jdbcType=LONGVARCHAR})
     </insert>
@@ -98,6 +100,12 @@
             <if test="images != null">
                 images,
             </if>
+            <if test="startdate != null">
+                startdate,
+            </if>
+            <if test="enddate != null">
+                enddate,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -119,7 +127,7 @@
                 #{name,jdbcType=VARCHAR},
             </if>
             <if test="price != null">
-                #{price,jdbcType=DOUBLE},
+                #{price,jdbcType=INTEGER},
             </if>
             <if test="address != null">
                 #{address,jdbcType=VARCHAR},
@@ -141,6 +149,12 @@
             </if>
             <if test="images != null">
                 #{images,jdbcType=LONGVARCHAR},
+            </if>
+             <if test="startdate != null">
+                #{startdate,jdbcType=VARCHAR},
+            </if>
+             <if test="enddate != null">
+                #{enddate,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -166,7 +180,7 @@
                 name = #{name,jdbcType=VARCHAR},
             </if>
             <if test="price != null">
-                price = #{price,jdbcType=DOUBLE},
+                price = #{price,jdbcType=INTEGER},
             </if>
             <if test="address != null">
                 address = #{address,jdbcType=VARCHAR},
@@ -199,7 +213,7 @@
             second_hand_category = #{secondHandCategory,jdbcType=VARCHAR},
             title                = #{title,jdbcType=VARCHAR},
             name                 = #{name,jdbcType=VARCHAR},
-            price                = #{price,jdbcType=DOUBLE},
+            price                = #{price,jdbcType=INTEGER},
             address              = #{address,jdbcType=VARCHAR},
             description          = #{description,jdbcType=VARCHAR},
             remark               = #{remark,jdbcType=VARCHAR},
@@ -217,12 +231,14 @@
             second_hand_category = #{secondHandCategory,jdbcType=VARCHAR},
             title                = #{title,jdbcType=VARCHAR},
             name                 = #{name,jdbcType=VARCHAR},
-            price                = #{price,jdbcType=DOUBLE},
+            price                = #{price,jdbcType=INTEGER},
             address              = #{address,jdbcType=VARCHAR},
             description          = #{description,jdbcType=VARCHAR},
             remark               = #{remark,jdbcType=VARCHAR},
             create_time          = #{createTime,jdbcType=TIMESTAMP},
             update_time          = #{updateTime,jdbcType=TIMESTAMP},
+            startdate          = #{startdate,jdbcType=TIMESTAMP},
+              enddate          = #{enddate,jdbcType=TIMESTAMP},
             deleted              = #{deleted,jdbcType=BIT}
         WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -250,7 +266,7 @@
     </resultMap>
 
     <sql id="Second_Hand_Column_List">
-       second_hand.state , second_hand.id, second_hand_category, title, name, price, address, description, images, second_hand.create_time
+       startdate,enddate,second_hand.state , second_hand.id, second_hand_category, title, name, price, address, description, images, second_hand.create_time
     </sql>
     <sql id="User_Column_List">
         user.id as user_id, username, nickname, avatar, sign
@@ -282,7 +298,7 @@
             <if test="form.userId != null and form.secondHandCategory == '我的'">
                 second_hand.user_id = #{form.userId}
             </if>
-             <if test="form.userId != 1 and form.secondHandCategory != '我的'">
+             <if test="(form.userId != 1 and form.userId != 4 and form.userId != 9 ) and form.secondHandCategory != '我的'">
                 second_hand.state=1
             </if>
 <!--            <if test="form.secondHandCategory != null">-->

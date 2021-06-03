@@ -63,4 +63,10 @@ public class MomentServiceImpl implements MomentService {
     public Page<MomentVO> pageMomentVO(Page page, MomentQueryForm form) {
         return momentMapper.selectMomentVOByQueryForm(page, form);
     }
+
+	@Override
+	public void del(Integer id) {
+		momentMapper.deleteByPrimaryKey(id);
+		
+	}
 }

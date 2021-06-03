@@ -38,4 +38,10 @@ public class CommentController {
         List<CommentVO> commentList = commentService.listCommentVO(resourceId);
         return Result.success(commentList);
     }
+    
+    @GetMapping("/del")
+    public Result<Integer> del(Integer id) {
+    	commentService.del(id);
+        return Result.success(1);
+    }
 }

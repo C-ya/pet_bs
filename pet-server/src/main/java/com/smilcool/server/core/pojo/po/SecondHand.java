@@ -18,7 +18,7 @@ public class SecondHand {
 
     private String name;
 
-    private Double price;
+    private Integer price;
 
     private String address;
 
@@ -35,4 +35,7 @@ public class SecondHand {
     private String images;
     
     private Integer state;
+    
+    private String startdate;
+    private String enddate;
 }

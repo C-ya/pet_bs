@@ -39,4 +39,9 @@ public class MomentController {
         Page<MomentVO> momentPage = momentService.pageMomentVO(page, form);
         return Result.success(momentPage);
     }
+    @GetMapping("/del")
+    public Result<Integer> del(Integer id) {
+    	momentService.del(id);
+        return Result.success(1);
+    }
 }

@@ -1,5 +1,13 @@
 package com.smilcool.server.core.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.smilcool.server.common.enums.DicTypeEnum;
 import com.smilcool.server.common.exception.SmilcoolException;
@@ -12,8 +20,6 @@ import com.smilcool.server.core.pojo.vo.SecondHandVO;
 import com.smilcool.server.core.service.ResourceService;
 import com.smilcool.server.core.service.SecondHandService;
 import com.smilcool.server.core.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * @author Angus
@@ -72,8 +78,29 @@ public class SecondHandServiceImpl implements SecondHandService {
 	@Override
 	public Integer updateStatus(Integer id) {
 		SecondHand hand=secondHandMapper.selectByPrimaryKey(id);
+		Date currentTime=new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = formatter.format(currentTime);
 		hand.setState(1);
+		hand.setStartdate(dateString);
+		hand.setEnddate(getMonthlyRepayDate(currentTime,hand.getPrice(),5));
 		secondHandMapper.updateByPrimaryKey(hand);
 		return 1;
 	}
+	
+    public static String getMonthlyRepayDate(Date startDate, Integer phaseNumber, Integer type) {
+  	    try {
+			SimpleDateFormat sdf  =new SimpleDateFormat("yyyy-MM-dd");
+			startDate=sdf.parse(sdf.format(startDate));  
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(startDate);
+			calendar.add(type, phaseNumber);
+			return sdf.format(calendar.getTime());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+  	    return null;
+    }
+
 }

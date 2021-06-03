@@ -34,4 +34,6 @@ public class LostFoundAddForm {
     private String address;
 
     private String images;
+    private String startdate;
+    private String enddate;
 }

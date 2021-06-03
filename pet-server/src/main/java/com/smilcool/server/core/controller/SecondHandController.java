@@ -55,6 +55,8 @@ public class SecondHandController {
     
     @GetMapping("/updateStatus")
     public Result<Integer> updateStatus(Integer id) {
+    	
+    	
     	secondHandService.updateStatus(id);
         return Result.success(1);
     }

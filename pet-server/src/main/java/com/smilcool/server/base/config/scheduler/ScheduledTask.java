@@ -39,7 +39,7 @@ public class ScheduledTask {
     /**
      * 同步 MySQL 到 Elasticsearch
      */
-    @Scheduled(cron = "0 */1 * * * *")
+  //  @Scheduled(cron = "0 */1 * * * *")
     public void syncMySqlToElasticsearch() {
         // 从数据库获取上次更新的时间
         String updateTimeStart = sysParamService

@@ -16,4 +16,6 @@ public interface MomentService {
     Moment getMoment(Integer id);
 
     Page<MomentVO> pageMomentVO(Page page, MomentQueryForm form);
+
+	void del(Integer id);
 }

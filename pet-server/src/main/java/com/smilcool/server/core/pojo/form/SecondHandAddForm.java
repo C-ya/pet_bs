@@ -31,4 +31,7 @@ public class SecondHandAddForm {
 
     @NotBlank(message = "描述不能为空")
     private String description;
+    
+    private String startdate;
+    private String enddate;
 }

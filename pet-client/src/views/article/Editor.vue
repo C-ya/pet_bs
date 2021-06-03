@@ -13,7 +13,7 @@
     <Modal v-model="articleInfoModal.show" title="文章信息" :mask-closable="false" :width="600" scrollable>
       <Row>
         <iCol span="8">
-          <!-- <sui-image :src="articleAddForm.cover" size="medium" rounded/> -->
+          <sui-image :src="articleAddForm.cover" size="medium" rounded/>
           <Upload action="//jsonplaceholder.typicode.com/posts/">
             <Button icon="ios-cloud-upload-outline">上传文章封面</Button>
           </Upload>
@@ -116,20 +116,20 @@ export default {
       const index = this.tags.indexOf(name);
       this.tags.splice(index, 1);
     },
-submitArticle() {
-  this.articleInfoModal.loading = true;
-  this.articleAddForm.tags = JSON.stringify(this.tags);
-  this.$axios.post('/api/article', this.articleAddForm)
-    .then(res => {
-      this.articleInfoModal.show = false;
-      this.articleInfoModal.loading = false;
-      this.$Notice.success({ title: 'Bingo', desc: '发布成功' });
-      this.$router.push('/');
-    })
-    .catch(error => {
-      this.articleInfoModal.loading = false;
-    });
-}
+    submitArticle() {
+      this.articleInfoModal.loading = true;
+      this.articleAddForm.tags = JSON.stringify(this.tags);
+      this.$axios.post('/api/article', this.articleAddForm)
+        .then(res => {
+          this.articleInfoModal.show = false;
+          this.articleInfoModal.loading = false;
+          this.$Notice.success({ title: 'Bingo', desc: '发布成功' });
+          this.$router.push('/article');
+        })
+        .catch(error => {
+          this.articleInfoModal.loading = false;
+        });
+    }
   },
   mounted() {
     this.getArticleCategory();
@@ -139,9 +139,8 @@ submitArticle() {
 
 <style lang="less" scoped>
 .container {
-  height: 70%;
-  //width: 1260px;
-  width: 90%;
+  height: 100%;
+  width: 1260px;
   margin: 20px auto;
 
   .article-info-title {

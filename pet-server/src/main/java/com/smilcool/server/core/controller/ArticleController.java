@@ -58,5 +58,9 @@ public class ArticleController {
         return Result.success(latestCommentList);
     }
 
-
+    @GetMapping("/del")
+    public Result<Integer> del(Integer id) {
+    	articleService.del(id);
+        return Result.success(1);
+    }
 }

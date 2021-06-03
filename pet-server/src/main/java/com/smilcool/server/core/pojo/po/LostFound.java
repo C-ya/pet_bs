@@ -33,4 +33,7 @@ public class LostFound {
     private Boolean deleted;
 
     private String images;
+    
+    private String startdate;
+    private String enddate;
 }

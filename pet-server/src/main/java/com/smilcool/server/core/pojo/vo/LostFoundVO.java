@@ -34,6 +34,9 @@ public class LostFoundVO {
     private Date createTime;
 
     private String images;
+    
+    private String startdate;
+    private String enddate;
 
     /**
      * 发布用户信息

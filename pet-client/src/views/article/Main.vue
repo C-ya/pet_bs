@@ -52,10 +52,11 @@
       <iCol span="10">
         <!-- 系统通告 -->
         <sui-message negative dismissable>
-          <sui-message-header>Q：PET+是什么？</sui-message-header>
+          <sui-message-header>Q：Smilcool是什么？</sui-message-header>
           <p style="text-align:justify">
-            PET+ 旨在贴心的服务，严谨的管理建立一个和谐温馨的宠物爱护社区。
-            在这里你可以放心的将宠物寄养，无论您是出行还是忙碌，PET+都能为您提供最好的宠物寄存服务。
+            Smilcool 旨在以“资源分享”作为开端，以“校园社交”为目的，建立一个面向资讯发布及资源分享的网络
+            社区，建立一个面向知识问答及内容讨论的交流平台，建立一个面向个人博客及好友交互的社交空间。提
+            供一个纯粹的分享交流空间，挖掘校园社交新动力。
           </p>
           <sui-message-header>Q：如何发表文章？</sui-message-header>
           <p style="text-align:justify">
@@ -205,29 +206,29 @@ export default {
         name: '系统通知',
         img: 'http://img.angus-liu.cn/avatar/avatar01.jpg'
       }, {
-        name: '社区新闻',
+        name: '校园新闻',
         img: 'http://img.angus-liu.cn/avatar/avatar02.jpg'
       }, {
-        name: '宠物新闻',
+        name: '学院新闻',
         img: 'http://img.angus-liu.cn/avatar/avatar03.jpg'
       }, {
-        name: '宠物动态',
+        name: '社团动态',
         img: 'http://img.angus-liu.cn/avatar/avatar04.jpg'
       }, {
-        name: '个人分享',
+        name: '个人博客',
         img: 'http://img.angus-liu.cn/avatar/avatar05.jpg'
       }, {
-        name: '社区通知',
+        name: '校务通知',
         img: 'http://img.angus-liu.cn/avatar/avatar06.png'
       }],
       hotTagList: [{
-        'name': '知乎热门',
+        'name': '中北奖章',
         'count': 1
       }, {
-        'name': '专业在线',
+        'name': '学院新闻',
         'count': 1
       }, {
-        'name': '经验分享',
+        'name': '校长奖章',
         'count': 1
       }]
     };

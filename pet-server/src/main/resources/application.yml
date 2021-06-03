@@ -74,4 +74,4 @@ smilcool:
   # netty 监听端口
   netty-port: 8088
   # 本地存储位置
-  local-storage: D:/Smilcool/
+  local-storage: E:/PET+/

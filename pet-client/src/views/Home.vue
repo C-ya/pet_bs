@@ -19,15 +19,15 @@ export default {
     Footer
   },
   methods: {
-// 从后台获取用户是否登录
-getCurrentUser() {
-  // 获取登录用户信息
-  this.$axios.get('/api/user/current')
-    .then(res => {
-      let result = res.data;
-      this.$store.commit('userUpdate', result.data);
-    })
-}
+    // 从后台获取用户是否登录
+    getCurrentUser() {
+      // 获取登录用户信息
+      this.$axios.get('/api/user/current')
+        .then(res => {
+          let result = res.data;
+          this.$store.commit('userUpdate', result.data);
+        })
+    }
   },
   mounted() {
     // TODO 2019/5/25 启动 WebSocket

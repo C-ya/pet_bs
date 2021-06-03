@@ -16,4 +16,6 @@ public interface CommentService {
     Comment addComment(CommentAddForm form);
 
     List<CommentVO> listCommentVO(Integer resourceId);
+
+	void del(Integer id);
 }

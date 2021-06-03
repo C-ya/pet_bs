@@ -31,6 +31,4 @@ public class UserUpdateForm {
     private String major;
 
     private String phone;
-
-    private String email;
 }

@@ -8,9 +8,9 @@
             <img src="../../assets/img/logo/forum.svg" style="width: 55px; float: left">
             <div style="line-height: 180%; text-align: center;">
               <div style="font-size: 15px">
-                社区论坛 <a> PET+ Forum </a> 正式上线！快来畅所欲言吧~
+                校内论坛 <a> Smilcool Forum </a> 正式上线！快来畅所欲言吧~
               </div>
-              <p style="padding: 0 10px;">铲屎官们不要刷屏哦，爱护社区论坛环境 😂</p>
+              <p style="padding: 0 10px;">老司机不要过来开车哦，会被查水表滴 😂</p>
             </div>
           </div>
         </sui-message>
@@ -24,7 +24,7 @@
             <sui-icon name="wifi teal"/>
           </sui-card-content>
           <sui-card-content extra>
-            <p>社区热点</p>
+            <p>校园热点</p>
           </sui-card-content>
         </a>
       </iCol>
@@ -44,7 +44,7 @@
             <sui-icon name="lightbulb outline yellow"/>
           </sui-card-content>
           <sui-card-content extra>
-            <p>经验分享</p>
+            <p>经历分享</p>
           </sui-card-content>
         </a>
       </iCol>

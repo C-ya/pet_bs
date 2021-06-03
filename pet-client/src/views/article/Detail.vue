@@ -45,7 +45,12 @@
                       <sui-comment-metadata>
                         <Time :time="comment.createTime"/>
                       </sui-comment-metadata>
+					  		  <span style="color:#0000EE;float: right;"   
+								v-if="$store.state.user
+								&& (comment.postUser.id === $store.state.user.id || $store.state.user.id===1 ||$store.state.user.id===4 || $store.state.user.id===9)"
+								@click="delCom(comment.id)"> 删除</span>
                       <sui-comment-text>{{comment.content}}</sui-comment-text>
+		
                       <sui-comment-actions>
                         <sui-comment-action @click="replyComment(comment.id, comment.postUser)">回复</sui-comment-action>
                       </sui-comment-actions>
@@ -100,10 +105,10 @@
         </sui-card>
         <!-- 发布用户信息 END -->
         <!-- 操作按钮 -->
-        <div class="actions-buttons" v-if="$store.state.user && article.userId === $store.state.user.id">
-          <sui-button-group>
-            <sui-button icon="pencil" content="编辑" basic positive fluid/>
-            <sui-button icon="delete" content="删除" basic negative fluid/>
+        <div class="actions-buttons" v-if="$store.state.user 
+		&& (article.userId === $store.state.user.id || $store.state.user.id==1 ||$store.state.user.id==4 || $store.state.user.id==9)">
+          <sui-button-group> 
+            <sui-button icon="delete" @click="delArt(article.id)" content="删除" basic negative fluid/>
           </sui-button-group>
         </div>
         <!-- 操作按钮 END -->
@@ -139,7 +144,7 @@ export default {
         'id': -1,
         'userId': -1,
         'resourceId': -1,
-        'articleCategory': '精选文章',
+        'articleCategory': '校园文章',
         'title': '测试文章',
         'createTime': '2019-05-13',
         'tags': ['测试标签1', '测试标签2'],
@@ -201,6 +206,37 @@ export default {
     };
   },
   methods: {
+	
+	  // 删除
+	  delArt(id) { 
+	   var msg = "您真的确定要删除该文章吗？\n\n请确认！"; 
+	   if (confirm(msg)==true){ 
+	     this.$axios.get('/api/article/del?id='+id)
+	         .then(res => {
+	             let result = res.data;
+	             if (result.success) {
+	                 this.$Notice.success({ title: '提示', desc: '操作成功' });
+	                    this.$router.push('/article');
+	             }
+	         })
+	     }
+	    
+	  },
+      // 删除
+      delCom(id) { 
+		   var msg = "您真的确定要删除吗？\n\n请确认！"; 
+		   if (confirm(msg)==true){ 
+			   this.$axios.get('/api/comment/del?id='+id)
+			       .then(res => {
+			           let result = res.data;
+			           if (result.success) {
+			               this.$Notice.success({ title: '提示', desc: '操作成功' });
+			                location.reload();
+			           }
+			       })
+			   }
+        
+      }  ,
     // 获取文章信息
     getArticle() {
       this.$axios.get(`/api/article/${this.id}`)
@@ -251,12 +287,12 @@ export default {
         });
     },
     // 回复评论
-replyComment(parentId, replyUser) {
-  this.comment.parentId = parentId;
-  this.comment.replyUserId = replyUser.id;
-  this.comment.value = `@${replyUser.nickname} `;
-  this.$refs.commentInput.focus();
-},
+    replyComment(parentId, replyUser) {
+      this.comment.parentId = parentId;
+      this.comment.replyUserId = replyUser.id;
+      this.comment.value = `@${replyUser.nickname} `;
+      this.$refs.commentInput.focus();
+    },
     // 点赞
     addZan(resource) {
       this.$axios.post('/api/zan', { resourceId: resource.id })
