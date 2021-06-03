@@ -46,7 +46,7 @@
       </iCol>
     </Row>
     <!-- 菜单 END -->
-    <!-- 二手列表 -->
+    <!-- 动态列表 -->
     <div class="second-hand-list">
       <sui-card
         class="fluid second-hand-card"
@@ -68,8 +68,6 @@
           <sui-card-description class="second-hand-description">{{
             secondHand.address
           }}</sui-card-description>
-          <!--          <span class="second-hand-price">￥{{secondHand.price}}</span>-->
-          <!--          <span slot="right">-->
           <!--              <a is="sui-label" basic @click="addZan(secondHand.resource)">👍 {{secondHand.resource.zanCount}}</a>-->
           <!--              <a is="sui-label" basic @click="getCommentList(secondHand.resource)">-->
           <!--                💬 {{secondHand.resource.commentCount}}-->
@@ -88,7 +86,7 @@
         </sui-card-content>
       </sui-card>
     </div>
-    <!-- 二手列表 END -->
+    <!-- 动态列表 END -->
     <!-- 加载更多 -->
     <sui-button
       class="fluid"
@@ -340,21 +338,21 @@ export default {
       this.getSecondHandPage(this.param);
     },
     // 初始化宠物添加模态框
-resetSecondHanAddModal() {
-  this.secondHanAddModal = {
-    show: false,
-    form: {
-      secondHandCategory: "",
-      title: "",
-      name: "",
-      price: 0,
-      description: "",
-      address: "",
-      images: "",
+    resetSecondHanAddModal() {
+      this.secondHanAddModal = {
+        show: false,
+        form: {
+          secondHandCategory: "",
+          title: "",
+          name: "",
+          price: 0,
+          description: "",
+          address: "",
+          images: "",
+        },
+      };
+      this.$refs.imageUploader.clearImages();
     },
-  };
-  this.$refs.imageUploader.clearImages();
-},
     // 获取宠物类别
     getSecondHandCategory() {
       this.$axios
@@ -377,18 +375,18 @@ resetSecondHanAddModal() {
       });
     },
     // 添加宠物
-addSecondHand() {
-  let secondHandForm = this.secondHanAddModal.form;
-  secondHandForm.images = JSON.stringify(secondHandForm.images);
-  this.$axios.post("/api/second-hand", secondHandForm).then((res) => {
-    let result = res.data;
-    if (result.success) {
-      this.$Notice.success({ title: "Bingo", desc: "发布成功" });
-      this.resetSecondHanAddModal();
-      this.getSecondHandPage(this.param);
-    }
-  });
-},
+    addSecondHand() {
+      let secondHandForm = this.secondHanAddModal.form;
+      secondHandForm.images = JSON.stringify(secondHandForm.images);
+      this.$axios.post("/api/second-hand", secondHandForm).then((res) => {
+        let result = res.data;
+        if (result.success) {
+          this.$Notice.success({ title: "Bingo", desc: "发布成功" });
+          this.resetSecondHanAddModal();
+          this.getSecondHandPage(this.param);
+        }
+      });
+    },
     // 加载更多
     loadMore() {
       this.param.current++;
@@ -404,11 +402,11 @@ addSecondHand() {
       });
     },
     // 点赞
-addZan(resource) {
-  this.$axios
-    .post("/api/zan", { resourceId: resource.id })
-    .then((res) => resource.zanCount++);
-},
+    addZan(resource) {
+      this.$axios
+        .post("/api/zan", { resourceId: resource.id })
+        .then((res) => resource.zanCount++);
+    },
     // 获取评论
     getCommentList(resource) {
       this.currentResource = resource;
@@ -430,32 +428,32 @@ addZan(resource) {
       };
     },
     // 添加评论
-addComment() {
-  // 设置资源 ID
-  this.commentAddModal.form.resourceId = this.currentResource.id;
-  // 判断是评论还是回复
-  if (
-    this.commentAddModal.form.value.startsWith("@") &&
-    this.commentAddModal.form.replyUserId !== null
-  ) {
-    // 回复时去掉评论内容中的回复用户名
-    let index = this.commentAddModal.form.value.indexOf(" ");
-    this.commentAddModal.form.content = this.commentAddModal.form.value.substr(
-      index + 1
-    );
-  } else {
-    this.commentAddModal.form.parentId = null;
-    this.commentAddModal.form.replyUserId = null;
-    this.commentAddModal.form.content = this.commentAddModal.form.value;
-  }
-  this.$axios
-    .post("/api/comment", this.commentAddModal.form)
-    .then((res) => {
-      this.initComment();
-      this.currentResource.commentCount++;
-      this.getCommentList(this.currentResource);
-    });
-},
+    addComment() {
+      // 设置资源 ID
+      this.commentAddModal.form.resourceId = this.currentResource.id;
+      // 判断是评论还是回复
+      if (
+        this.commentAddModal.form.value.startsWith("@") &&
+        this.commentAddModal.form.replyUserId !== null
+      ) {
+        // 回复时去掉评论内容中的回复用户名
+        let index = this.commentAddModal.form.value.indexOf(" ");
+        this.commentAddModal.form.content = this.commentAddModal.form.value.substr(
+          index + 1
+        );
+      } else {
+        this.commentAddModal.form.parentId = null;
+        this.commentAddModal.form.replyUserId = null;
+        this.commentAddModal.form.content = this.commentAddModal.form.value;
+      }
+      this.$axios
+        .post("/api/comment", this.commentAddModal.form)
+        .then((res) => {
+          this.initComment();
+          this.currentResource.commentCount++;
+          this.getCommentList(this.currentResource);
+        });
+    },
     // 回复评论
     replyComment(parentId, replyUser) {
       this.commentAddModal.form.parentId = parentId;
@@ -473,7 +471,8 @@ addComment() {
 
 <style lang="less" scoped>
 .container {
-  width: 1200px;
+  //width: 1200px;
+  width: 80%;
   margin: 10px auto;
   padding: 5px;
   overflow-x: hidden;
@@ -508,21 +507,27 @@ addComment() {
   }
 
   .second-hand-list {
-    margin: 15px auto 0;
+    //margin: 15px auto 0;
+    margin: 2% auto;
     padding: 1px;
-    width: 1230px;
+    //width: 1230px;
+    width: 100%;
     overflow: auto;
 
     .second-hand-card {
       width: 216px;
+      //width: 20%;
       height: 390px;
       overflow: auto;
-      margin: 0 27px 27px 0;
+      //margin: 0 27px 27px 0;
+      margin: 0 2% 2% 0;
       float: left;
 
       .second-hand-image {
-        width: 216px;
-        height: 216px;
+        //width: 216px;
+        width: 100%;
+        //height: 216px;
+        height: 55%;
       }
 
       a.second-hand-title {

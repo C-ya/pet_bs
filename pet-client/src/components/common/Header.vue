@@ -291,7 +291,7 @@ header {
   z-index: 2;
   width: 100%;
   height: 70px;
-  background: #fff;
+  background: rgb(197, 184, 165);
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -314,18 +314,18 @@ header {
     ul {
       list-style-type: none;
       padding-top: 5px;
-      font-size: 16px;
+      font-size: 20px;
 
       li {
         display: inline-block;
         margin-right: 20px;
 
         a {
-          color: #aaa;
+          color: rgb(119, 104, 36);
         }
 
         a:hover {
-          color: #ff8364;
+          color: rgb(53, 46, 14);
         }
       }
     }

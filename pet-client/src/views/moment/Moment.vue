@@ -47,9 +47,9 @@
             <span style="margin-left: 5px; font-size: 16px">{{
               moment.user.nickname
             }}</span>
-            <sui-button class="right floated" size="mini" basic positive
+            <!-- <sui-button class="right floated" size="mini" basic positive
               >关注</sui-button
-            >
+            > -->
           </sui-card-header>
           <sui-card-meta class="moment-time">
             <Time :time="moment.createTime" />
@@ -84,7 +84,7 @@
     <!-- 动态列表 END -->
     <!-- 加载更多 -->
     <sui-button
-      class="fluid"
+      class="fluid, width: 10%, margin-left: 45%"
       color="grey"
       basic
       content="加载更多"
@@ -404,7 +404,8 @@ addComment() {
 
 <style lang="less" scoped>
 .container {
-  width: 1140px;
+  //width: 1140px;
+  width: 80%;
   margin: 20px auto;
   padding: 5px;
 
