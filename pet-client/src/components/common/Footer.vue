@@ -2,7 +2,8 @@
   <footer>
     <div class="container">
       <div class="row">
-        <span class="copyright">Copyright 2021 萌宠</span>
+        <p>© 2021 <strong> 宠物社区 </strong> Made with <i class="fa fa-heart text-danger"></i> by <a href="https://hasthemes.com/">Emily</a></p>
+                        
       </div>
     </div>
   </footer>

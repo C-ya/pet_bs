@@ -2,11 +2,11 @@
   <div class="container">
     <Row>
       <iCol span="18">
-        <!-- 失物寻物详情 -->
+        <!-- 失宠寻宠详情 -->
         <article>
 
           <sui-message>
-            物品详情
+            宠物详情
           </sui-message>
 
           <sui-card class="fluid file-card">
@@ -73,7 +73,7 @@
             </sui-card-content>
           </sui-card>
         </article>
-        <!-- 失物寻物详情 END -->
+        <!-- 失宠寻宠详情 END -->
       </iCol>
       <iCol span="6">
         <!-- 发布用户信息 -->
@@ -106,7 +106,7 @@
         <sui-card class="fluid">
           <sui-message attached="top" content="他的闲置"/>
           <sui-card-content>
-            暂无更多二手物品
+            暂无更多宠物信息
           </sui-card-content>
         </sui-card>
         <!-- 相关文件 END -->

@@ -219,7 +219,7 @@ export default {
         'searchCount': true,
         'pages': 20
       },
-      // 失物寻物分页
+      // 失宠寻宠分页
       lostFoundPage: {
         'records': [{
           'id': 1,
@@ -304,7 +304,7 @@ export default {
           });
         });
     },
-    // 获取失物寻物分页
+    // 获取失宠寻宠分页
     getLostFoundPage(param) {
       this.$axios.get('/api/lost-found/page', param)
         .then(res => {

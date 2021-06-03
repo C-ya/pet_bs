@@ -12,10 +12,10 @@
           <a is="sui-label" v-else @click="selectCategory(item.name)">{{item.name}}</a>
         </template>
       </iCol>
-      <iCol span="6">
+      <!-- <iCol span="6">
         <sui-input class="fluid" placeholder="搜索文章" icon="search"
                    v-model="param.general" @keydown.enter="getArticlePage(param)"/>
-      </iCol>
+      </iCol> -->
     </Row>
     <Row>
       <iCol>
@@ -154,7 +154,7 @@ export default {
 
 <style lang="less" scoped>
 .container {
-  width: 1140px;
+  width: 80%;
   margin: 5px auto;
 
   .ivu-col {
